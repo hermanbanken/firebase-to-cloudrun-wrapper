@@ -7,7 +7,7 @@ require('require-injector').getInstance({ basedir: __dirname })
 
 // Start a replacement server
 const app = require("express")();
-const { text, json } = require("body-parser");
+const { text, json, urlencoded } = require("body-parser");
 app.listen(process.env.PORT || "8080");
 
 // This will collect all exports from the functions recursively
@@ -16,7 +16,7 @@ function discoverFunctions(thing, name) {
   const { HttpsFunction } = require("./cloudrun-httpsfunction");
   if (thing instanceof HttpsFunction) {
     console.log(`Serving HTTP ${name}`)
-    app.all(name, json(), text(), thing.fn);
+    app.all(name, json(), text(), urlencoded(), thing.fn);
     return;
   }
   if (typeof thing === "object") {
@@ -25,7 +25,7 @@ function discoverFunctions(thing, name) {
     console.log(`Ignoring ${name}`)
   }
 }
-  
+
 // Load the Firebase Functions & configure them via Express
 const everything = require("./index");
 discoverFunctions(everything, "");
