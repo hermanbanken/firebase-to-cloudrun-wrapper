@@ -3,7 +3,7 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 const db = admin.firestore();
 
-db.collection('blogs').doc(1).set({title:'My Blog', text: 'A story'}, {merge: true});
+db.collection('blogs').doc("1").set({title:'My Blog', text: 'A story'}, {merge: true});
 
 exports.form = require("./form");
 
