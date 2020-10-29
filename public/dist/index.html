@@ -7,7 +7,7 @@
 	function write(data) {
 		const n = document.createElement("code");
 		n.innerHTML = "<pre>"+JSON.stringify(data, null, 2)+"</pre>";
-		document.appendChild(n);
+		document.body.appendChild(n);
 	}
 	fetch("/settings").then((res) => res.json()).then(write);
 </script>
