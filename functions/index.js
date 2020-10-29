@@ -7,9 +7,11 @@ db.collection('blogs').doc("1").set({title:'My Blog', text: 'A story'}, {merge: 
 
 exports.form = require("./form");
 
-exports.config = functions.region("europe-west1").https.onRequest(async (_request, response) => {
+exports.settings = functions.region("europe-west1").https.onRequest(async (_request, response) => {
 	return response.send({
 		version: 1,
+		platform: process.platform,
+		port: process.env.PORT,
 		config: functions.config().dummy.config,
 	});
 });
