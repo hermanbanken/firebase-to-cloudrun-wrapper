@@ -1,8 +1,9 @@
 FROM node:alpine3.12
 WORKDIR /src
-COPY public/dist ./public
+COPY functions/package.json functions/package-lock.json ./
+RUN npm ci
 ADD functions ./
 ADD cloudrun ./
-RUN npm ci
+COPY public/dist ./public
 ENV dummy_config=foobar port=8080
 CMD ["node", "cloudrun.js"]
