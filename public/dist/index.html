@@ -1,0 +1,11 @@
+<h1>Hello World</h1>
+<form action="form/test">
+	<input type="text" name="field" value="Foobar" />
+	<button>Submit</button>
+</form>
+<script>
+	function write(data) {
+	  document.write("<code><pre>"+JSON.stringify(data, null, 2)+"</pre></code>");
+	}
+	fetch("/settings").then((res) => res.json()).then(write);
+</script>
