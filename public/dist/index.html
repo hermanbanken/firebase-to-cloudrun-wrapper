@@ -5,7 +5,9 @@
 </form>
 <script>
 	function write(data) {
-	  document.write("<code><pre>"+JSON.stringify(data, null, 2)+"</pre></code>");
+		const n = document.createElement("code");
+		n.innerHTML = "<pre>"+JSON.stringify(data, null, 2)+"</pre>";
+		document.appendChild(n);
 	}
 	fetch("/settings").then((res) => res.json()).then(write);
 </script>
